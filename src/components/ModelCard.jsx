@@ -1,6 +1,8 @@
 import { Link } from "react-router";
+import React from "react";
+import { MapPin, User, DollarSign, Calendar } from "lucide-react";
 
-export const ModelCard = ({ model }) => {
+export const ModelCard = React.memo(({ model }) => {
   const {
     vehicleName,
     coverImage,
@@ -13,42 +15,80 @@ export const ModelCard = ({ model }) => {
     availability,
   } = model;
 
+  const isAvailable = availability?.toLowerCase() === "available";
+
   return (
-    <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-      <figure className="h-48 overflow-hidden">
+    <div className="group card bg-base-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 rounded-2xl overflow-hidden border border-base-200">
+
+      <figure className="relative h-56 overflow-hidden">
         <img
           src={coverImage}
           alt={vehicleName}
-          className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+          loading="lazy"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title">{vehicleName}</h2>
-
-        <div className="flex justify-between items-center text-xs text-secondary mb-2">
-          <span className="badge badge-secondary badge-sm rounded-full">
+       
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+     
+        <div className="absolute top-3 left-3">
+          <span className="badge badge-primary gap-1 font-semibold shadow-lg backdrop-blur-sm bg-primary/90">
             {category}
           </span>
-          <span>{availability}</span>
         </div>
 
-        <p className="line-clamp-2 text-sm text-base-content/80">{description}</p>
+      
+        <div className="absolute top-3 right-3">
+          <span className={`badge gap-1 font-semibold shadow-lg backdrop-blur-sm ${
+            isAvailable 
+              ? 'badge-success bg-green-500/90 text-white' 
+              : 'badge-error bg-red-500/90 text-white'
+          }`}>
+            {availability}
+          </span>
+        </div>
+      </figure>
 
-        <div className="mt-3 text-xs text-base-content/60">
-          <p>Owner: {owner}</p>
-          <p>Location: {location}</p>
-          <p>Price per day: ${pricePerDay}</p>
+    
+      <div className="card-body p-5">
+    
+        <h2 className="card-title text-xl font-bold mb-2 line-clamp-1 group-hover:text-primary transition-colors">
+          {vehicleName}
+        </h2>
+
+      
+        <p className="text-sm text-base-content/70 line-clamp-2 mb-4 leading-relaxed">
+          {description}
+        </p>
+
+       
+        <div className="space-y-2 mb-4">
+          <div className="flex items-center gap-2 text-sm">
+            <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
+            <span className="text-base-content/80 truncate">{location}</span>
+          </div>
+          
+          <div className="flex items-center gap-2 text-sm">
+            <User className="w-4 h-4 text-primary flex-shrink-0" />
+            <span className="text-base-content/80 truncate">Hosted by {owner}</span>
+          </div>
         </div>
 
-        <div className="card-actions justify-end items-center mt-4">
+      
+        <div className="flex items-center justify-between pt-4 border-t border-base-200">
+          <div className="flex items-baseline gap-1">
+            <DollarSign className="w-5 h-5 text-success" />
+            <span className="text-2xl font-bold text-success">{pricePerDay}</span>
+            <span className="text-sm text-base-content/60">/day</span>
+          </div>
+          
           <Link
             to={`/model-details/${_id}`}
-            className="btn rounded-full bg-gradient-to-r from-pink-500 to-red-600 hover:from-red-600 hover:to-pink-500 text-white w-full btn-sm"
+            className="btn btn-primary btn-sm rounded-full px-6 hover:scale-105 transition-transform shadow-md"
           >
-            View
+            Book Now
           </Link>
         </div>
       </div>
     </div>
   );
-};
+});

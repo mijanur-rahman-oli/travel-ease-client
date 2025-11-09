@@ -9,7 +9,6 @@ import {
   Clock,
   Car,
   ChevronUp,
-  Linkedin,
   Send,
   Shield,
   Award,
@@ -108,7 +107,7 @@ const Footer = () => {
                     { icon: Facebook, url: "#" },
                     { icon: X, url: "#" },
                     { icon: Instagram, url: "#" },
-                    { icon: Linkedin, url: "#" },
+
                   ].map((social, index) => (
                     <a
                       key={index}

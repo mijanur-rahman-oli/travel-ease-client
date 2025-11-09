@@ -8,13 +8,14 @@ const MainLayout = () => {
     <div>
       <div className="max-w-full mx-auto">
         <NavBar />
-        <div className="max-w-[1344px] mx-auto mt-4 ">
+        <div>
           <Outlet />
         </div>
-        <Footer/>
+
+        <Footer />
       </div>
 
-      <Toaster/>
+      <Toaster />
     </div>
   );
 };
