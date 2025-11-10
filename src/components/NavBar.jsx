@@ -21,17 +21,19 @@ const NavBar = () => {
     }
   }, [theme]);
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+useEffect(() => {
+  document.documentElement.setAttribute("data-theme", theme);
+  localStorage.setItem("theme", theme);
+}, [theme]);
 
-  const handleThemeToggle = (e) => {
-    const newTheme = e.target.checked ? "dark" : "light";
-    setTheme(newTheme);
+const handleThemeToggle = (e) => {
+  const newTheme = e.target.checked ? "dark" : "light";
+  setTheme(newTheme);
 
-  };
+  document.documentElement.setAttribute("data-theme", newTheme);
+  localStorage.setItem("theme", newTheme);
+};
+
 
   const handleSignOut = async () => {
     try {
@@ -60,10 +62,9 @@ const NavBar = () => {
             to={link.to}
             end={link.end}
             className={({ isActive }) =>
-              `flex items-center gap-2 px-4 py-2 rounded-xl transition-all hover:scale-105 ${
-                isActive
-                  ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg"
-                  : "hover:bg-base-200"
+              `flex items-center gap-2 px-4 py-2 rounded-xl transition-all hover:scale-105 ${isActive
+                ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg"
+                : "hover:bg-base-200"
               }`
             }
           >
@@ -78,10 +79,9 @@ const NavBar = () => {
             <NavLink
               to={link.to}
               className={({ isActive }) =>
-                `flex items-center gap-2 px-4 py-2 rounded-xl transition-all hover:scale-105 ${
-                  isActive
-                    ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg"
-                    : "hover:bg-base-200"
+                `flex items-center gap-2 px-4 py-2 rounded-xl transition-all hover:scale-105 ${isActive
+                  ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg"
+                  : "hover:bg-base-200"
                 }`
               }
             >
@@ -95,16 +95,14 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`sticky top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
+      className={`sticky top-0 w-full z-50 transition-all duration-300 ${isScrolled
           ? "bg-base-100/95 backdrop-blur-lg shadow-xl py-3"
           : "bg-base-100 shadow-md py-4"
-      }`}
+        }`}
     >
       <div className="max-w-[1344px] mx-auto px-4 sm:px-6 lg:px-0">
         <div className="flex items-center justify-between">
 
-          {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity"></div>
@@ -166,7 +164,7 @@ const NavBar = () => {
                     />
                   </div>
                 </div>
-                
+
                 <button
                   onClick={handleSignOut}
                   className="btn btn-sm btn-ghost text-error hover:bg-error hover:text-white rounded-full flex items-center gap-1 font-medium"
@@ -193,7 +191,6 @@ const NavBar = () => {
               </div>
             )}
 
-            {/* Mobile Menu */}
             <div className="dropdown dropdown-end lg:hidden">
               <label tabIndex={0} className="btn btn-ghost btn-circle" aria-label="Open menu">
                 <MdMenu className="text-2xl" />
