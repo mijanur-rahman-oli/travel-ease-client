@@ -85,7 +85,7 @@ export const ModelCard = React.memo(({ model }) => {
             to={`/model-details/${_id}`}
             className="btn btn-primary btn-sm rounded-full px-6 hover:scale-105 transition-transform shadow-md"
           >
-            Book Now
+            View Details
           </Link>
         </div>
       </div>
