@@ -105,7 +105,7 @@ const AllVehicles = () => {
                             <input
                                 type="text"
                                 placeholder="Search by name, owner, location..."
-                                className="input input-bordered bg-gray-100 w-full pl-12 rounded-full"
+                                className="input input-bordered w-full pl-12 rounded-full"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />

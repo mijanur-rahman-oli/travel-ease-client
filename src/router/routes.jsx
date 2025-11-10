@@ -4,6 +4,10 @@ import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
 import Home from "../Pages/Home/Home";
 import AllVehicles from "../Pages/AllVehicles/AllVehicles";
+import PrivateRoute from "./PrivateRoute";
+import VehicleDetails from "../Pages/VehicleDetails/VehicleDetails";
+
+
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +22,7 @@ export const router = createBrowserRouter([
           if (!response.ok) throw new Error('Failed to fetch');
           return response.json();
         }
-      }, 
+      },
       {
         path: "/all-vehicles",
         element: <AllVehicles />,
@@ -27,6 +31,13 @@ export const router = createBrowserRouter([
           if (!response.ok) throw new Error('Failed to fetch');
           return response.json();
         }
+      },
+      {
+        path: "/vehicle-details/:id",
+        element: ( <PrivateRoute>
+          <VehicleDetails />
+        </PrivateRoute> )
+
       },
       {
         path: "/auth/login",
