@@ -7,6 +7,7 @@ import AllVehicles from "../Pages/AllVehicles/AllVehicles";
 import PrivateRoute from "./PrivateRoute";
 import VehicleDetails from "../Pages/VehicleDetails/VehicleDetails";
 import AddVehicles from "../Pages/AddVehicles/AddVehicles";
+import MyVehicles from "../Pages/MyVehicles/MyVehicles";
 
 
 
@@ -49,6 +50,16 @@ export const router = createBrowserRouter([
         ),
 
       },
+
+       {
+        path: "/my-vehicles",
+        element: (
+          <PrivateRoute>
+            <MyVehicles />
+          </PrivateRoute>
+        ),
+      },
+    
       {
         path: "/auth/login",
         element: <Login />,

@@ -56,7 +56,7 @@ const AddVehicles = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
 
           <div>
-            <label className="label text-gray-800 font-medium">Vehicle Name</label>
+            <label className="label font-medium text-gray-500">Vehicle Name</label>
             <input
               type="text"
               name="vehicleName"
@@ -67,7 +67,7 @@ const AddVehicles = () => {
           </div>
 
           <div>
-            <label className="label text-gray-800 font-medium">Owner</label>
+            <label className="label text-gray-500 font-medium">Owner</label>
             <input
               type="text"
               name="owner"
@@ -78,7 +78,7 @@ const AddVehicles = () => {
           </div>
 
           <div>
-            <label className="label text-gray-800 font-medium">Category</label>
+            <label className="label text-gray-500 font-medium">Category</label>
             <select
               name="category"
               required
@@ -102,7 +102,7 @@ const AddVehicles = () => {
           </div>
 
           <div>
-            <label className="label text-gray-800 font-medium">Price Per Day ($)</label>
+            <label className="label text-gray-500 font-medium">Price Per Day ($)</label>
             <input
               type="number"
               name="pricePerDay"
@@ -114,7 +114,7 @@ const AddVehicles = () => {
           </div>
 
           <div>
-            <label className="label text-gray-800 font-medium">Location</label>
+            <label className="label text-gray-500 font-medium">Location</label>
             <input
               type="text"
               name="location"
@@ -125,7 +125,7 @@ const AddVehicles = () => {
           </div>
 
           <div>
-            <label className="label text-gray-800 font-medium">Availability</label>
+            <label className="label text-gray-500 font-medium">Availability</label>
             <select
               name="availability"
               required
@@ -138,7 +138,7 @@ const AddVehicles = () => {
           </div>
 
           <div>
-            <label className="label text-gray-800 font-medium">Cover Image URL</label>
+            <label className="label text-gray-500 font-medium">Cover Image URL</label>
             <input
               type="url"
               name="coverImage"
@@ -149,7 +149,7 @@ const AddVehicles = () => {
           </div>
 
           <div>
-            <label className="label text-gray-800 font-medium">Description</label>
+            <label className="label text-gray-500 font-medium">Description</label>
             <textarea
               name="description"
               required
@@ -160,7 +160,7 @@ const AddVehicles = () => {
           </div>
 
           <div>
-            <label className="label text-gray-800 font-medium">Your Email</label>
+            <label className="label text-gray-500 font-medium">Your Email</label>
             <input
               type="email"
               value={user?.email || ""}
