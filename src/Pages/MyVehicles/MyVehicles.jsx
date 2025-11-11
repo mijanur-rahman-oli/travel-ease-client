@@ -12,7 +12,12 @@ const MyVehicles = () => {
     useEffect(() => {
         if (!user?.email) return;
 
-        fetch(`http://localhost:3000/my-vehicles?email=${user.email}`)
+        fetch(`http://localhost:3000/my-vehicles?email=${user.email}`, {
+            headers: {
+                authorization: `Bearer ${user.accessToken}`
+            }
+        })
+
             .then(res => res.json())
             .then(data => {
                 setVehicles(data.vehicles || []);
@@ -47,7 +52,7 @@ const MyVehicles = () => {
 
     return (
         <div className="p-6 max-w-6xl mx-auto">
-            <h1 className="text-3xl font-bold mb-6 text-center">My Vehicles</h1>
+            <h1 className="text-3xl font-bold mb-6 text-center mt-6">My Vehicles</h1>
 
             {vehicles.length === 0 ? (
                 <p className="text-center text-gray-500">You haven’t added any vehicles yet.</p>

@@ -47,9 +47,9 @@ const AddVehicles = () => {
   };
 
   return (
-    <div className="card border border-gray-200 bg-base-200 w-full max-w-2xl mx-auto shadow-2xl rounded-2xl my-10">
+    <div className="card border border-gray-200 bg-base-200 w-full max-w-2xl mx-auto shadow-2xl rounded-2xl my-6">
       <div className="card-body p-8">
-        <h2 className="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-blue-600 to-purple-400 bg-clip-text text-transparent">
+        <h2 className="text-3xl font-bold text-center mb-6">
           Add New Vehicle
         </h2>
 

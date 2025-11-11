@@ -84,7 +84,7 @@ const AllVehicles = () => {
             <div className="hero py-6 bg-gradient-to-b from-base-200 to-base-100">
                 <div className="hero-content text-center">
                     <div>
-                        <h1 className="text-5xl font-bold">
+                        <h1 className="text-2xl md:text-3xl font-bold">
                             Explore Our <span className="text-primary">Vehicles</span>
                         </h1>
                         <p className="py-6 max-w-2xl mx-auto">

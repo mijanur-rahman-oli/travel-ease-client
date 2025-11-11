@@ -11,6 +11,7 @@ const VehicleDetails = () => {
   const [vehicle, setVehicle] = useState(null);
   const [loading, setLoading] = useState(true);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [bookingLoading, setBookingLoading] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:3000/vehicles/${id}`, {
@@ -36,6 +37,14 @@ const VehicleDetails = () => {
   const handleBookNow = () => {
     if (!vehicle) return;
 
+    // Check if user is trying to book their own vehicle
+    if (vehicle.userEmail === user.email) {
+      toast.error("You cannot book your own vehicle!");
+      return;
+    }
+
+    setBookingLoading(true);
+
     const bookingData = {
       vehicleId: vehicle._id,
       vehicleName: vehicle.vehicleName,
@@ -43,6 +52,7 @@ const VehicleDetails = () => {
       pricePerDay: vehicle.pricePerDay,
       location: vehicle.location,
       owner: vehicle.owner,
+      ownerEmail: vehicle.userEmail,
       coverImage: vehicle.coverImage,
       bookedBy: user.email,
       bookedByName: user.displayName || user.email,
@@ -60,25 +70,34 @@ const VehicleDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.insertedId || data.success) {
+        setBookingLoading(false);
+        if (data.success && data.insertedId) {
           Swal.fire({
             title: 'Booking Successful!',
             html: `
               <div class="text-center">
                 <div class="text-6xl mb-4">🎉</div>
-                <p class="text-lg">Your ride request has been submitted!</p>
+                <p class="text-lg mb-2">Your ride request has been submitted!</p>
+                <p class="text-sm text-gray-600">Booking ID: ${data.insertedId}</p>
               </div>
             `,
             icon: 'success',
             confirmButtonColor: '#ec4899',
-            confirmButtonText: 'Awesome!',
+            confirmButtonText: 'View My Bookings',
+            showCancelButton: true,
+            cancelButtonText: 'Stay Here',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              navigate('/my-bookings'); // Navigate to bookings page if you have one
+            }
           });
         } else {
-          toast.error('Booking failed. Please try again.');
+          toast.error(data.message || 'Booking failed. Please try again.');
         }
       })
       .catch((err) => {
         console.error(err);
+        setBookingLoading(false);
         toast.error('Something went wrong. Please try again.');
       });
   };
@@ -121,7 +140,7 @@ const VehicleDetails = () => {
           to="/all-vehicles"
           className="inline-flex items-center gap-2 text-pink-600 dark:text-pink-400 hover:text-pink-700 dark:hover:text-pink-300 font-semibold mb-6 group transition-all duration-300"
         >
-          <span className="transform group-hover:-translate-x-1 transition-transform duration-300">←</span> 
+          <span className="transform group-hover:-translate-x-1 transition-transform duration-300">←</span>
           <span>Back to Vehicles</span>
         </Link>
 
@@ -140,16 +159,15 @@ const VehicleDetails = () => {
                 <div className="absolute inset-0 bg-base-200 animate-pulse"></div>
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
+
               <div className="absolute top-4 right-4 flex flex-col gap-2 z-10">
                 <span className="badge bg-gradient-to-r from-pink-500 to-purple-600 text-white border-0 px-4 py-3 text-xs font-bold shadow-lg animate-slide-in-right">
                   {vehicle?.category || 'N/A'}
                 </span>
-                <span className={`badge ${
-                  vehicle?.availability === 'Available' 
-                    ? 'bg-gradient-to-r from-green-500 to-emerald-600' 
+                <span className={`badge ${vehicle?.availability === 'Available'
+                    ? 'bg-gradient-to-r from-green-500 to-emerald-600'
                     : 'bg-gradient-to-r from-red-500 to-rose-600'
-                } text-white border-0 px-4 py-3 text-xs font-bold shadow-lg animate-slide-in-right animation-delay-100`}>
+                  } text-white border-0 px-4 py-3 text-xs font-bold shadow-lg animate-slide-in-right animation-delay-100`}>
                   {vehicle?.availability || 'Unknown'}
                 </span>
               </div>
@@ -172,7 +190,7 @@ const VehicleDetails = () => {
                     <p className="text-sm font-bold text-base-content">{vehicle?.owner || 'N/A'}</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center gap-3 p-3 bg-base-200 rounded-xl hover:bg-base-300 transition-colors duration-300 group">
                   <span className="text-2xl group-hover:scale-110 transition-transform duration-300">📍</span>
                   <div className="flex-1">
@@ -180,7 +198,7 @@ const VehicleDetails = () => {
                     <p className="text-sm font-bold text-base-content">{vehicle?.location || 'Not specified'}</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center gap-3 p-3 bg-base-200 rounded-xl hover:bg-base-300 transition-colors duration-300 group">
                   <span className="text-2xl group-hover:scale-110 transition-transform duration-300">✉️</span>
                   <div className="flex-1">
@@ -201,7 +219,7 @@ const VehicleDetails = () => {
                 </div>
               </div>
 
-    
+
               <div className="animate-slide-in-left animation-delay-300">
                 <div className="bg-base-200 p-5 rounded-xl">
                   <h3 className="text-sm font-bold text-base-content mb-2 flex items-center gap-2">
@@ -219,15 +237,35 @@ const VehicleDetails = () => {
                   <>
                     <button
                       onClick={handleBookNow}
-                      className="flex-1 btn bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0 text-sm font-bold shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+                      disabled={bookingLoading}
+                      className="flex-1 btn bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0 text-sm font-bold shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <span className="text-lg">🚗</span> Book Now
+                      {bookingLoading ? (
+                        <>
+                          <span className="loading loading-spinner loading-sm"></span>
+                          Processing...
+                        </>
+                      ) : (
+                        <>
+                          <span className="text-lg">🚗</span> Book Now
+                        </>
+                      )}
                     </button>
                     <button
                       onClick={handleBookNow}
-                      className="flex-1 btn bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white border-0 text-sm font-bold shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+                      disabled={bookingLoading}
+                      className="flex-1 btn bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white border-0 text-sm font-bold shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <span className="text-lg">📋</span> Request Ride
+                      {bookingLoading ? (
+                        <>
+                          <span className="loading loading-spinner loading-sm"></span>
+                          Processing...
+                        </>
+                      ) : (
+                        <>
+                          <span className="text-lg">📋</span> Request Ride
+                        </>
+                      )}
                     </button>
                   </>
                 ) : (
@@ -262,7 +300,7 @@ const VehicleDetails = () => {
         <div className="fixed bottom-20 left-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl animate-float animation-delay-300 pointer-events-none"></div>
       </div>
 
-   
+
     </div>
   );
 };
