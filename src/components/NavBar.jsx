@@ -46,7 +46,7 @@ const handleThemeToggle = (e) => {
   const publicLinks = [
     { to: "/", icon: <GoHomeFill />, label: "Home", end: true },
     { to: "/all-vehicles", icon: <MdDirectionsCar />, label: "All Vehicles" },
-    { to: "/add-vehicle", icon: <MdAddBox />, label: "Add Vehicle" },
+    { to: "/add-vehicles", icon: <MdAddBox />, label: "Add Vehicle" },
   ];
 
   const privateLinks = [

@@ -6,6 +6,7 @@ import Home from "../Pages/Home/Home";
 import AllVehicles from "../Pages/AllVehicles/AllVehicles";
 import PrivateRoute from "./PrivateRoute";
 import VehicleDetails from "../Pages/VehicleDetails/VehicleDetails";
+import AddVehicles from "../Pages/AddVehicles/AddVehicles";
 
 
 
@@ -34,9 +35,18 @@ export const router = createBrowserRouter([
       },
       {
         path: "/vehicle-details/:id",
-        element: ( <PrivateRoute>
+        element: (<PrivateRoute>
           <VehicleDetails />
-        </PrivateRoute> )
+        </PrivateRoute>)
+
+      },
+      {
+        path: "/add-vehicles",
+        element: (
+          <PrivateRoute>
+            <AddVehicles />
+          </PrivateRoute>
+        ),
 
       },
       {
