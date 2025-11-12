@@ -9,6 +9,7 @@ import VehicleDetails from "../Pages/VehicleDetails/VehicleDetails";
 import AddVehicles from "../Pages/AddVehicles/AddVehicles";
 import MyVehicles from "../Pages/MyVehicles/MyVehicles";
 import MyBookings from "../Pages/MyBookings/MyBookings";
+import UpdateVehicle from "../Pages/UpdateVehicle/UpdateVehicle";
 
 
 
@@ -52,7 +53,7 @@ export const router = createBrowserRouter([
 
       },
 
-       {
+      {
         path: "/my-vehicles",
         element: (
           <PrivateRoute>
@@ -60,7 +61,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-         {
+      {
         path: "/my-bookings",
         element: (
           <PrivateRoute>
@@ -68,7 +69,16 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-    
+      {
+        path: "/update-vehicle/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateVehicle />
+          </PrivateRoute>
+        ),
+
+      },
+
       {
         path: "/auth/login",
         element: <Login />,

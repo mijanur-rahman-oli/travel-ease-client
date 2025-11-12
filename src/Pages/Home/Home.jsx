@@ -16,8 +16,6 @@ const Home = () => {
     return (
         <div>
             <Banner />
-
-         
             <section className="max-w-[1344px] mx-auto mt-16 px-4">
                 <h2 className="text-3xl font-bold text-center mb-8">Latest Vehicles</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -27,7 +25,6 @@ const Home = () => {
                 </div>
             </section>
 
-          
             <section className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 mt-16 py-16">
                 <div className="max-w-[1344px] mx-auto px-4">
                     <h2 className="text-3xl font-bold text-center mb-6 dark:text-white">About TravelEase</h2>

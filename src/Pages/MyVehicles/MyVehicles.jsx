@@ -80,7 +80,7 @@ const MyVehicles = () => {
                                     </Link>
 
                                     <Link
-                                        to={`/update-vehicle`}
+                                      to={`/update-vehicle/${vehicle._id}`}
                                         className="btn btn-sm bg-yellow-500 text-white hover:bg-yellow-600"
                                     >
                                         Update

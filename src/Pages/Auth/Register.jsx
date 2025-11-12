@@ -115,7 +115,7 @@ const Register = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
-                placeholder="Enter Password"
+                placeholder="Enter 6 Character Password"
                 className="input input-bordered rounded-full pr-12"
                 required
               />

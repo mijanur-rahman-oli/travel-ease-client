@@ -41,7 +41,7 @@ const Footer = () => {
 
   const quickLinks = [
     { to: "/all-vehicles", label: "All Vehicles" },
-    { to: "/add-vehicle", label: "Add Vehicle" },
+    { to: "/add-vehicles", label: "Add Vehicles" },
   ];
 
   const services = [
@@ -203,16 +203,16 @@ const Footer = () => {
 
             <div className="pt-6 border-t border-white/10">
               <div className="flex flex-col md:flex-row justify-between items-center gap-3">
-                <p className="text-xs text-white">
+                <p className=" text-white text-md">
                   © {currentYear} <span className="text-transparent bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text font-bold">TravelEase</span>. All rights reserved.
                 </p>
 
                 <div className="flex flex-wrap justify-center gap-4 text-xs">
                   {[
-                    { to: "/privacy", label: "Privacy" },
-                    { to: "/terms", label: "Terms" },
-                    { to: "/refund", label: "Refund" },
-                    { to: "/support", label: "Support" },
+                    { to: "#", label: "Privacy" },
+                    { to: "#", label: "Terms" },
+                    { to: "#", label: "Refund" },
+                    { to: "#", label: "Support" },
                   ].map((link) => (
                     <Link
                       key={link.to}
