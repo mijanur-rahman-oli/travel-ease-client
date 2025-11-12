@@ -16,7 +16,7 @@ const VehicleDetails = () => {
   const [bookingLoading, setBookingLoading] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/vehicles/${id}`, {
+    fetch(`https://travel-ease-server-snowy.vercel.app/vehicles/${id}`, {
       headers: { authorization: `Bearer ${user.accessToken}` },
     })
       .then((res) => res.json())
@@ -69,7 +69,7 @@ const VehicleDetails = () => {
       status: 'pending',
     };
 
-    fetch(`http://localhost:3000/bookings`, {
+    fetch(`https://travel-ease-server-snowy.vercel.app/bookings`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -256,7 +256,7 @@ const VehicleDetails = () => {
                         <>Book Now</>
                       )}
                     </button>
-                    <button
+                    {/* <button
                       onClick={handleBookNow}
                       disabled={bookingLoading}
                       className="flex-1 btn bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white border-0 text-sm font-bold shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -269,7 +269,7 @@ const VehicleDetails = () => {
                       ) : (
                         <>Request Ride</>
                       )}
-                    </button>
+                    </button> */}
                   </>
                 ) : (
                   <button disabled className="w-full btn bg-base-300 text-base-content/50 border-0 cursor-not-allowed text-sm"> Unavailable</button>

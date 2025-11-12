@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
         element: <Home />,
         loader: async () => {
           try {
-            const response = await axios.get('http://localhost:3000/latest-vehicles');
+            const response = await axios.get('https://travel-ease-server-snowy.vercel.app/latest-vehicles');
             return response.data;
           } catch (error) {
             throw new Error('Failed to fetch latest vehicles');
@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
         element: <AllVehicles />,
         loader: async () => {
           try {
-            const response = await axios.get('http://localhost:3000/vehicles');
+            const response = await axios.get('https://travel-ease-server-snowy.vercel.app/vehicles');
             return response.data;
           } catch (error) {
             throw new Error('Failed to fetch vehicles');

@@ -27,7 +27,7 @@ const AddVehicles = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/vehicles",
+        "https://travel-ease-server-snowy.vercel.app/vehicles",
         vehicleData
       );
 

@@ -126,7 +126,7 @@ const Banner = () => {
                 variants={titleVariants}
                 initial="hidden"
                 animate="visible"
-                className="text-white text-5xl md:text-7xl font-bold mb-4 drop-shadow-2xl"
+                className="text-white text-3xl md:text-5xl font-bold mb-4 drop-shadow-2xl"
               >
                 Find Your Perfect Ride
               </motion.h1>

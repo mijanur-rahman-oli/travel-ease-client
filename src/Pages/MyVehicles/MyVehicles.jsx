@@ -12,7 +12,7 @@ const MyVehicles = () => {
     useEffect(() => {
         if (!user?.email) return;
 
-        fetch(`http://localhost:3000/my-vehicles?email=${user.email}`, {
+        fetch(`https://travel-ease-server-snowy.vercel.app/my-vehicles?email=${user.email}`, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`
             }
@@ -31,7 +31,7 @@ const MyVehicles = () => {
     }, [user]);
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:3000/vehicles/${id}`, {
+        fetch(`https://travel-ease-server-snowy.vercel.app/vehicles/${id}`, {
             method: "DELETE",
         })
             .then(res => res.json())

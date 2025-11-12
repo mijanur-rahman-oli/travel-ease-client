@@ -13,7 +13,7 @@ const UpdateVehicle = () => {
   useEffect(() => {
     if (!id || !user?.accessToken) return;
 
-    fetch(`http://localhost:3000/vehicles/${id}`, {
+    fetch(`https://travel-ease-server-snowy.vercel.app/vehicles/${id}`, {
       headers: {
         authorization: `Bearer ${user.accessToken}`,
       },
@@ -52,7 +52,7 @@ const handleSubmit = (e) => {
     availability: e.target.availability.value,
   };
 
-  fetch(`http://localhost:3000/vehicles/${id}`, {
+  fetch(`https://travel-ease-server-snowy.vercel.app/vehicles/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

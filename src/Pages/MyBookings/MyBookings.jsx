@@ -13,7 +13,7 @@ const MyBookings = () => {
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:3000/my-bookings?email=${user.email}`, {
+    fetch(`https://travel-ease-server-snowy.vercel.app/my-bookings?email=${user.email}`, {
       headers: {
         authorization: `Bearer ${user.accessToken}`,
       },
@@ -46,7 +46,7 @@ const MyBookings = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         setDeleting(true);
-        fetch(`http://localhost:3000/bookings/${id}`, {
+        fetch(`https://travel-ease-server-snowy.vercel.app/bookings/${id}`, {
           method: "DELETE",
           headers: {
             authorization: `Bearer ${user.accessToken}`,
@@ -149,7 +149,7 @@ const MyBookings = () => {
                 </p>
                 <div className="card-actions justify-between mt-4">
                   <Link
-                    to={`/vehicles/${booking.vehicleId}`}
+                    to={`/vehicle-details/${booking.vehicleId}`}
                     className="btn btn-sm bg-gradient-to-r from-blue-500 to-cyan-600 text-white border-0 hover:from-blue-600 hover:to-cyan-700"
                   >
                     View Details
