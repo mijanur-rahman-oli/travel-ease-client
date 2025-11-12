@@ -21,7 +21,6 @@ const UpdateVehicle = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          // Convert pricePerDay to number if it's object
           const price =
             typeof data.result.pricePerDay === "object"
               ? parseInt(data.result.pricePerDay.$numberInt)

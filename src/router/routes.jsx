@@ -10,6 +10,7 @@ import AddVehicles from "../Pages/AddVehicles/AddVehicles";
 import MyVehicles from "../Pages/MyVehicles/MyVehicles";
 import MyBookings from "../Pages/MyBookings/MyBookings";
 import UpdateVehicle from "../Pages/UpdateVehicle/UpdateVehicle";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 
 
@@ -17,6 +18,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage/>,
     children: [
       {
         index: true,
