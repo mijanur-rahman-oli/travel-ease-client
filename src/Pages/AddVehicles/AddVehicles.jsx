@@ -1,11 +1,12 @@
 import { use } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const AddVehicles = () => {
   const { user } = use(AuthContext);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const form = e.target;
@@ -24,26 +25,22 @@ const AddVehicles = () => {
       createdAt: new Date().toISOString(),
     };
 
-    fetch("http://localhost:3000/vehicles", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(vehicleData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId || data.success) {
-          toast.success("Vehicle added successfully! 🚗");
-          form.reset();
-        } else {
-          toast.error(data.message || "Failed to add vehicle");
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        toast.error("Something went wrong!");
-      });
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/vehicles",
+        vehicleData
+      );
+
+      if (response.data.insertedId || response.data.success) {
+        toast.success("Vehicle added successfully! 🚗");
+        form.reset();
+      } else {
+        toast.error(response.data.message || "Failed to add vehicle");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error(err.response?.data?.message || "Something went wrong!");
+    }
   };
 
   return (
