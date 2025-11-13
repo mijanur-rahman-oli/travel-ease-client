@@ -1,18 +1,66 @@
-# React + Vite
+# TravelEase 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern vehicle rental platform connecting travelers with trusted car owners for seamless booking experiences.
 
-Currently, two official plugins are available:
+## 🌐 Live Site
+[Visit TravelEase](https://effulgent-speculoos-591922.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- **🔍 Smart Vehicle Discovery** - Browse through a diverse collection of vehicles including SUVs, Sedans, Electric cars, and Vans with advanced filtering and search capabilities
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- **🌓 Dark Mode Support** - Seamless theme switching between light and dark modes for comfortable browsing at any time of day
 
-Note: This will impact Vite dev & build performances.
+- **🔒 Secure Booking System** - Safe and encrypted booking process with verified vehicle owners and transparent pricing
 
-## Expanding the ESLint configuration
+- **📱 Fully Responsive Design** - Optimized user experience across all devices - desktop, tablet, and mobile with intuitive navigation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **⚡ Real-time Updates** - Instant vehicle availability updates and booking confirmations with dynamic content loading
+
+## Technologies Used
+
+### Frontend
+- **React.js** - Component-based UI library
+- **Next.js** - React framework for server-side rendering
+- **Tailwind CSS** - Utility-first CSS framework
+- **DaisyUI** - Tailwind CSS component library
+
+### Backend
+- **Express.js** - Node.js web application framework
+- **MongoDB** - NoSQL database for data storage
+
+##  Getting Started
+
+### Prerequisites
+- Node.js (v14 or higher)
+- MongoDB
+- npm or yarn
+
+## Key Functionalities
+
+- User authentication and authorization
+- Vehicle listing and detailed view
+- Advanced search and filtering
+- Booking management
+- User profile management
+- Admin dashboard for vehicle management
+- Responsive design with mobile-first approach
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 👤 Author
+
+**Your Name**
+- GitHub:(https://github.com/mijanur-rahman-oli))
+
+## 🙏 Acknowledgments
+
+- Thanks to all contributors who helped build this project
+- Inspiration from modern car rental platforms
+- Community support from React and Next.js developers
+
+---
+
+Made by Mijanur Rahman Oli
