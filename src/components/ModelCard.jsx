@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import React from "react";
 import { MapPin, User, DollarSign, Calendar } from "lucide-react";
+import { format, parseISO } from "date-fns";
 
 export const ModelCard = React.memo(({ model }) => {
   const {
@@ -13,9 +14,20 @@ export const ModelCard = React.memo(({ model }) => {
     pricePerDay,
     location,
     availability,
+    createdAt,
   } = model;
 
   const isAvailable = availability?.toLowerCase() === "available";
+
+  const formatDate = (dateString) => {
+    if (!dateString) return "N/A";
+    try {
+      const date = parseISO(dateString);
+      return format(date, "MMM dd, yyyy");
+    } catch (error) {
+      return "N/A";
+    }
+  };
 
   return (
     <div className="group card bg-base-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 rounded-2xl overflow-hidden border border-base-200">
@@ -36,7 +48,6 @@ export const ModelCard = React.memo(({ model }) => {
           </span>
         </div>
 
-
         <div className="absolute top-3 right-3">
           <span className={`badge gap-1 font-semibold shadow-lg backdrop-blur-sm ${isAvailable
               ? 'badge-success bg-green-500/90 text-white'
@@ -47,18 +58,15 @@ export const ModelCard = React.memo(({ model }) => {
         </div>
       </figure>
 
-
       <div className="card-body p-5">
 
         <h2 className="card-title text-xl font-bold mb-2 line-clamp-1 group-hover:text-primary transition-colors">
           {vehicleName}
         </h2>
 
-
         <p className="text-sm text-base-content/70 line-clamp-2 mb-4 leading-relaxed">
           {description}
         </p>
-
 
         <div className="space-y-2 mb-4">
           <div className="flex items-center gap-2 text-sm">
@@ -70,8 +78,12 @@ export const ModelCard = React.memo(({ model }) => {
             <User className="w-4 h-4 text-primary flex-shrink-0" />
             <span className="text-base-content/80 truncate">Hosted by {owner}</span>
           </div>
-        </div>
 
+          <div className="flex items-center gap-2 text-sm">
+            <Calendar className="w-4 h-4 text-primary flex-shrink-0" />
+            <span className="text-base-content/80 truncate">Added {formatDate(createdAt)}</span>
+          </div>
+        </div>
 
         <div className="flex items-center justify-between pt-4 border-t border-base-200">
           <div className="flex items-baseline gap-1">
