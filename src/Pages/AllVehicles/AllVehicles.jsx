@@ -69,7 +69,6 @@ const AllVehicles = () => {
   return (
     <div className="min-h-screen bg-base-100">
 
-      {/* Hero */}
       <div className="hero py-6 bg-gradient-to-b from-base-200 to-base-100">
         <div className="hero-content text-center">
           <div>
@@ -86,7 +85,7 @@ const AllVehicles = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 pt-4">
+      <div className="max-w-[1344px] mx-auto px-4 pt-4">
         <div className="mb-10 space-y-6">
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <div className="relative w-full max-w-md">
